@@ -47,7 +47,7 @@ class NewsListState extends State<NewsList> with AutomaticKeepAliveClientMixin {
       final originalList = OriginalList.fromJson(json.decode(response.body));
       for (var item in originalList.data) {
         var content = json.decode(item.content);
-        if (content['title'] == null) {
+        if (content['title'] == null || content['source'] == null) {
           continue;
         }
         if (content['has_video']) {
@@ -139,8 +139,9 @@ class NewsListState extends State<NewsList> with AutomaticKeepAliveClientMixin {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                width: 255,
+              Flexible(
+                flex: 5,
+//                width: 255,
                 child: new Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -161,11 +162,12 @@ class NewsListState extends State<NewsList> with AutomaticKeepAliveClientMixin {
                   ],
                 ),
               ),
-              Container(
-                height: 85,
+              Flexible(
+                flex: 2,
+//                height: 85,
                 child: Image.network(
                   item.middleImage.url,
-                  fit: BoxFit.fitHeight,
+                  fit: BoxFit.fitWidth,
                 ),
               ),
             ],
@@ -201,8 +203,8 @@ class NewsListState extends State<NewsList> with AutomaticKeepAliveClientMixin {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: item.imageList.map((imageItem) {
-              return Container(
-                height: 85,
+              return Flexible(
+//                height: 85,
                 child: Image.network(
                   imageItem.url,
                   fit: BoxFit.fitHeight,

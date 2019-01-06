@@ -29,6 +29,14 @@ class IndexBodyState extends State<IndexBody> {
       case 'news_local':
       case 'news_entertainment':
       case 'news_tech':
+      case 'news_car':
+      case 'news_finance':
+      case 'news_military':
+      case 'news_sports':
+      case 'news_world':
+      case 'news_health':
+      case 'news_house':
+      case 'traditional_culture':
         return NewsList(
           category: category,
         );
