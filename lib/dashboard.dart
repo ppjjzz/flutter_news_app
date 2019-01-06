@@ -1,15 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news_app/index.dart';
+import 'package:flutter_news_app/index/index.dart';
 import 'package:flutter_news_app/person.dart';
-
-
 
 class Dashboard extends StatefulWidget {
   @override
   _DashboardState createState() => new _DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> with SingleTickerProviderStateMixin {
+class _DashboardState extends State<Dashboard>
+    with SingleTickerProviderStateMixin {
   int _pageIdx = 0;
   PageController _pageCtl;
   @override
@@ -18,40 +18,40 @@ class _DashboardState extends State<Dashboard> with SingleTickerProviderStateMix
     super.initState();
     _pageCtl = PageController(initialPage: _pageIdx);
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
     _pageCtl.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        body: PageView(
-          controller: _pageCtl,
-          physics: NeverScrollableScrollPhysics(),
-          onPageChanged: (index) => setState(() => _pageIdx = index),
-          children: <Widget>[
-            Index(),
-            Person()
-          ],
-        ),
-        bottomNavigationBar: _buildNavBar()
-      ),
+          body: PageView(
+            controller: _pageCtl,
+            physics: NeverScrollableScrollPhysics(),
+            onPageChanged: (index) => setState(() => _pageIdx = index),
+            children: <Widget>[Index(), Person()],
+          ),
+          bottomNavigationBar: _buildNavBar()),
     );
   }
 
   Widget _buildNavBar() {
-    return BottomNavigationBar(
+    return CupertinoTabBar(
       items: [
-      _buildNavItem(Icons.home, '首页'),
-      _buildNavItem(Icons.person, '我的')
-    ],
-      type: BottomNavigationBarType.fixed,
+        _buildNavItem(Icons.home, '首页'),
+        _buildNavItem(Icons.person, '我的')
+      ],
+      activeColor: Colors.red,
+//      type: BottomNavigationBarType.fixed,
       currentIndex: _pageIdx,
-      onTap: (index) => _pageCtl.animateToPage(index, duration: Duration(milliseconds: 300), curve: Curves.ease),
+      onTap: (index) => _pageCtl.animateToPage(index,
+          duration: Duration(milliseconds: 300), curve: Curves.ease),
     );
   }
 

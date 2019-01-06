@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_news_app/dashboard.dart';
-import 'package:flutter_news_app/index.dart';
 
 void main() async {
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown
-  ]);
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+//  debugPaintSizeEnabled = true;
   runApp(MyApp());
 }
 
@@ -21,10 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
       ),
       initialRoute: '/',
-      routes: {
-        '/': (context) => Dashboard()
-      },
+      routes: {'/': (context) => Dashboard()},
     );
   }
 }
-
